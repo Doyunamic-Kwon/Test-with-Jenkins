@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+    stages {
+        stage("Compile") {
+            steps {
+                // 이 라인을 추가하세요!
+                sh 'chmod +x ./gradlew' 
+
+                sh "./gradlew compileJava"
+            }
+        }
+        stage("Build") {
+            steps {
+                sh 'chmod +x ./gradlew' 
+
+                sh "./gradlew build"
+            }
+        }
+        stage("Unit test") {
+            steps {
+                sh "./gradlew test"
+            }
+        }
+    }
+}
